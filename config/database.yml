@@ -2,7 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 8 } %>
-  host: localhost
+  host: 172.104.142.218
+  username: testdb_admin
+  password: tstdb_admin
   timeout: 5000
   variables:
     statement_timeout: <%= ENV["DB_STATEMENT_TIMEOUT"] || 120_000 %>

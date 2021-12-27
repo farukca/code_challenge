@@ -2,6 +2,7 @@ module API
   module V1
     class CustomValidationError < StandardError; end
     class BaseController < ActionController::API
+      include Pagy::Backend
       respond_to :json
 
       rescue_from CustomValidationError,
@@ -17,6 +18,10 @@ module API
       rescue_from ActionController::RoutingError,
                   ActiveRecord::RecordNotFound do
         render json: { error_code: :not_found }, status: 404
+      end
+
+      def paginate(objects, per_page=10, opts={})
+         pagy(objects, items: per_page)
       end
     end
   end

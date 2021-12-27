@@ -30,4 +30,6 @@
 #  index_airports_on_name                    (name)
 #
 class Airport < ApplicationRecord
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :iata, presence: true, uniqueness: true
 end

@@ -32,5 +32,25 @@
 require 'rails_helper'
 
 RSpec.describe Airport, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  context "airport unit tests for validation" do
+
+    it "ensures iata code is present" do
+      fra_airport = create(:airport, :fra)
+      fra_airport.iata = nil
+
+      expect(fra_airport.save).to eq(false)
+    end
+
+    it "ensures iata code is unique" do
+      munich_port = create(:airport, :muc)
+      munich_port.save
+
+      second_port = munich_port.dup
+
+      expect(second_port.save).to eq(false)
+    end
+
+  end
+
 end
