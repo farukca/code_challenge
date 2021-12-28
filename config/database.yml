@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 8 } %>
   host: 172.104.142.218
-  username: testdb_admin
-  password: tstdb_admin
+  username: <%= ENV.fetch("DB_LOGIN_USER") %>
+  password: <%= ENV.fetch("DB_LOGIN_PASW") %>
   timeout: 5000
   variables:
     statement_timeout: <%= ENV["DB_STATEMENT_TIMEOUT"] || 120_000 %>
